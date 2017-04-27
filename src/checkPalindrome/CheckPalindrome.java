@@ -12,6 +12,34 @@ package checkPalindrome;
  */
 public final class CheckPalindrome {
 
+    /* Declaration of loop constraints */
+    private static final int UPPERBOUND = 999;
+    private static final int LOWERBOUND = 100;
+
+    /**
+     * Method to find largest palindrome made from the product of two 3-digit numbers.
+     * @return	int	Largest palindrome product
+     */
+    public static int findLargestPalindromeProduct(){
+        int previousPalindromeNumber = 0;
+
+        for (int i = UPPERBOUND; i >= LOWERBOUND; i--) {
+
+	    	/* Go to next index i if previous calculated palindrome is larger than first product for current value of i */
+            if (previousPalindromeNumber >= i * UPPERBOUND) {
+                break;
+            }
+            for (int j = UPPERBOUND; j >= i; j--) {                                // Loop j till j>=i to avoid calculation overhead in "i*j = j*i" situations
+                int productOfTwoNumbers = i * j;
+                if (previousPalindromeNumber < productOfTwoNumbers && isPalindrome(productOfTwoNumbers) ) {
+                    previousPalindromeNumber = productOfTwoNumbers;
+                    break;
+                }
+            }
+        }
+        return previousPalindromeNumber;
+    }
+
     /**
      * Method to find if the input number is a palindrome.
      * @param numberToCheck Input number to check for palindrome

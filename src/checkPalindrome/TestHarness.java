@@ -13,4 +13,9 @@ public class TestHarness {
 	public void testForIsPalindrome(){
 		assertEquals(true, CheckPalindrome.isPalindrome(9009));
 	}
+
+	@Test
+	public void testForLargestPalindromeNumber(){
+		assertEquals(906609, CheckPalindrome.findLargestPalindromeProduct());
+	}
 }
